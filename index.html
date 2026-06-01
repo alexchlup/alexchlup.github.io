@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Alexander — Websites für Unternehmen in ganz Österreich</title>
+	<meta name="description" content="Alexander, 17 — moderne, schnelle Websites für Unternehmen in ganz Österreich. KI-gestützt, in 5 Tagen, ab €299.">
+	<style>
+		:root{
+			--bg:#0F0F0F;
+			--fg:#ffffff;
+			--accent:#00D084;
+			--muted:rgba(255,255,255,0.07);
+			--card-bg:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+			--mono: "Courier New", Courier, monospace;
+			--sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+		}
+		*{box-sizing:border-box}
+		html,body{height:100%}
+		html{scroll-behavior:smooth}
+		body{
+			margin:0;
+			font-family:var(--sans);
+			background:var(--bg);
+			color:var(--fg);
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+			line-height:1.45;
+			padding-bottom:4rem;
+		}
+		a{color:inherit;text-decoration:none}
+		header{position:fixed;top:0;left:0;right:0;backdrop-filter:blur(14px);background:rgba(15,15,15,0.7);border-bottom:1px solid rgba(0,208,132,0.12);z-index:1000}
+		.container{max-width:1100px;margin:0 auto;padding:1.35rem 2rem}
+		.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+		.brand{display:flex;gap:.75rem;align-items:center;font-family:var(--mono);font-weight:700}
+		.brand .dot{width:10px;height:10px;background:var(--accent);border-radius:3px;display:inline-block}
+		nav{display:flex;align-items:center;gap:1rem}
+		nav a{margin-left:1rem;font-weight:600;color:rgba(255,255,255,0.85);transition:color .2s ease}
+		nav a:hover, nav a:focus{color:var(--accent)}
+		.nav-btn{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.2rem;border-radius:10px;background:var(--accent);color:#06110a;font-weight:700;border:0;cursor:pointer;transition:transform .2s ease,filter .2s ease}
+		.nav-btn:hover,.nav-btn:focus{transform:translateY(-1px);filter:brightness(1.03)}
+
+		/* Hero */
+		.hero{padding:6rem 0 3rem;opacity:1;transform:none}
+		.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:2rem;align-items:center}
+		.headline{font-size:clamp(2rem,4.5vw,3.4rem);margin:0 0 .5rem;font-weight:800}
+		.sub{color:var(--accent);font-family:var(--mono);font-weight:700;margin-bottom:1rem}
+		.lead{color:rgba(255,255,255,0.9);margin-bottom:1.5rem}
+		.ctas{display:flex;gap:.75rem}
+		.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--fg);cursor:pointer;font-weight:700}
+		.btn.primary{background:var(--accent);color:#06110a;border:0}
+		.btn.ghost{border-color:rgba(255,255,255,0.06)}
+		.badges{display:flex;gap:.5rem;margin-top:1.25rem;flex-wrap:wrap}
+		.badge{background:var(--muted);padding:.45rem .6rem;border-radius:999px;font-weight:700;font-size:.9rem}
+
+		/* Ensure hero content contrasts on dark background */
+		.hero > .container{position:relative;z-index:2}
+		.hero .headline,.hero .lead{color:var(--fg)}
+		.hero .sub{color:var(--accent)}
+		.hero .ctas .btn{z-index:3}
+
+		.hero-aside{background:var(--card-bg);padding:1.25rem;border-radius:12px;border:1px solid rgba(255,255,255,0.03);z-index:1}
+		.aside-row{display:flex;justify-content:space-between;gap:.5rem;margin-bottom:.75rem}
+		.aside-item{flex:1;padding:.6rem;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.05),transparent);text-align:center}
+		.aside-item strong{display:block;color:var(--accent);font-family:var(--mono)}
+
+		/* Sections */
+		section{padding:3rem 0}
+		h2{margin:0 0 1rem;font-size:1.3rem}
+
+		/* Services */
+		.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+		.card{background:var(--card-bg);padding:1.25rem;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transition:transform .22s ease,box-shadow .22s ease}
+		.card:hover{transform:translateY(-8px);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+		.price{font-family:var(--mono);font-size:1.6rem;color:var(--fg);margin-top:.5rem}
+		.highlight{border:2px solid var(--accent)}
+		.services-note{margin-top:.75rem;color:rgba(255,255,255,0.75);font-weight:600}
+
+		/* Portfolio */
+		.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+		.project{border-radius:12px;overflow:hidden;position:relative;min-height:160px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:1rem}
+		.project::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6))}
+		.project-title{position:relative;z-index:2;font-weight:800}
+		.project::before{content:"Klicken zum Ansehen";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--fg);background:rgba(0,208,132,0.92);font-family:var(--mono);font-weight:800;letter-spacing:.4px;opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s cubic-bezier(.2,.9,.25,1);z-index:3}
+		.project:hover::before,.project:focus::before,.project:focus-within::before{opacity:1;transform:none}
+		.project:focus{outline:2px solid rgba(0,208,132,0.18);outline-offset:4px}
+
+		/* How it works */
+		.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+		.step{background:var(--card-bg);width:100%;height:200px;padding:1.5rem 1rem;border-radius:10px;text-align:center;position:relative;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
+		.step:hover{transform:scale(1.03);background:rgba(255,255,255,0.1);box-shadow:0 18px 40px rgba(0,0,0,0.25)}
+		.step:focus{outline:2px solid rgba(0,208,132,0.32);outline-offset:4px}
+		.step-head{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin-bottom:.75rem}
+		.step .num{font-family:var(--mono);color:var(--accent);font-weight:800;padding:.3rem .7rem;font-size:.95rem;border-radius:8px;border:1px solid rgba(0,208,132,0.22);background:rgba(0,208,132,0.08)}
+		.step-title{font-weight:800;font-size:1rem;color:var(--fg);margin:0}
+		.step-desc{opacity:0;max-height:0;overflow:hidden;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,max-height .25s ease;margin:0;color:rgba(255,255,255,0.85);font-size:.95rem;line-height:1.5}
+		.step:hover .step-desc,.step:focus .step-desc{opacity:1;max-height:220px;transform:translateY(0)}
+		.step-desc{margin-top:.6rem}
+
+		/* About */
+		.about{display:grid;gap:1.5rem}
+		.about-grid{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center}
+		.avatar{width:96px;height:96px;border-radius:28px;background:rgba(0,208,132,0.12);border:1px solid rgba(0,208,132,0.25);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:2.25rem;font-weight:900;color:var(--accent);}
+		.about-card{border-left:4px solid var(--accent);padding:1.25rem 1rem 1.25rem 1.1rem;background:rgba(0,208,132,0.04);border-radius:14px}
+		.about-card p{margin:0 0 1.5rem;color:rgba(255,255,255,0.88);line-height:1.7}
+		.about-badges{display:flex;flex-wrap:wrap;gap:.75rem}
+		.stat-badge{padding:.7rem 1rem;border-radius:999px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.9);font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+		.stat-badge span{color:var(--accent);font-family:var(--mono);font-weight:800}
+
+		/* Contact */
+		form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+		form .full{grid-column:1/-1}
+		label{display:block;font-size:.9rem;color:rgba(255,255,255,0.8);margin-bottom:.35rem}
+		input,textarea{width:100%;padding:.65rem;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--fg)}
+		textarea{min-height:140px;resize:vertical}
+
+		/* Footer */
+		footer{padding:2rem 0;color:rgba(255,255,255,0.6);text-align:center}
+
+		/* Utilities */
+		.muted{color:rgba(255,255,255,0.65)}
+
+		@media (max-width:980px){
+			.hero-grid{grid-template-columns:1fr}
+			.hero-aside{order:2}
+			.portfolio-grid,.cards{grid-template-columns:repeat(2,1fr)}
+			.steps{grid-template-columns:repeat(2,1fr)}
+			form{grid-template-columns:1fr}
+		}
+		@media (max-width:560px){
+			.brand{font-size:.95rem}
+			.portfolio-grid,.cards{grid-template-columns:1fr}
+			.headline{font-size:2rem}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="container nav">
+			<div class="brand"><span class="dot"></span>Alexander</div>
+			<nav>
+				<a href="#services">Services</a>
+				<a href="#portfolio">Projekte</a>
+				<a href="#about">Über mich</a>
+				<a href="#contact">Kontakt</a>
+			</nav>
+			<a href="#contact" class="nav-btn">Angebot anfragen</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="container" id="hero">
+				<div style="max-width:900px;margin:0 auto;text-align:left;padding:4rem 1rem;">
+					<h1 class="headline">Alexander — Websites für Unternehmen in ganz Österreich</h1>
+					<div class="sub">Professionell. In 5 Tagen. Ab €299.</div>
+					<p class="lead">Moderne, schnelle Websites für Unternehmen in ganz Österreich — Agentur-Qualität dank KI, zum Startup-Preis.</p>
+					<div class="ctas" style="margin-top:1.25rem;">
+						<a class="btn primary" href="#portfolio">Meine Projekte ansehen</a>
+						<a class="btn ghost" href="#contact">Kostenloses Angebot</a>
+					</div>
+					<div class="badges" aria-hidden="true" style="margin-top:1.25rem;">
+						<div class="badge">3 Projekte</div>
+						<div class="badge">5 Tage Lieferzeit</div>
+						<div class="badge">100% Kundenzufriedenheit</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="services">
+			<div class="container">
+				<h2>Services & Preise</h2>
+				<div class="cards">
+					<div class="card">
+						<div class="muted">Starter</div>
+						<div class="price">€299</div>
+						<p class="muted">Kleines Unternehmen, einfache Seiten, responsive.</p>
+					</div>
+					<div class="card highlight">
+						<div class="muted">Standard</div>
+						<div class="price">€499</div>
+						<p class="muted">Optimal für die meisten Unternehmen — inkl. SEO-Basics.</p>
+					</div>
+					<div class="card">
+						<div class="muted">Premium</div>
+						<div class="price">€799</div>
+						<p class="muted">Erweiterte Funktionen, Mehrsprachigkeit & E-Commerce-ready.</p>
+					</div>
+				</div>
+				<div class="services-note">Wartung ab €49/Monat · Kostenloser Erstberatungscall</div>
+			</div>
+		</section>
+
+		<section id="portfolio">
+			<div class="container">
+				<h2>Portfolio</h2>
+				<div class="portfolio-grid">
+					<a class="project" href="../Restaurant/index.html" role="link" style="background-image:linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.1)),linear-gradient(90deg,#3b2b1f,#7c4a3f);">
+						<div class="project-title">Trattoria Roma</div>
+					</a>
+					<a class="project" href="../Friseur/index.html" role="link" style="background-image:linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.1)),linear-gradient(90deg,#5b2b4a,#9b6ca5);">
+						<div class="project-title">Studio Glamour</div>
+					</a>
+					<a class="project" href="../Elektriker/index.html" role="link" style="background-image:linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.1)),linear-gradient(90deg,#1b3b2b,#3fa57a);">
+						<div class="project-title">Müller Elektro</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="how">
+			<div class="container">
+				<h2>Wie es funktioniert</h2>
+				<div class="steps">
+					<div class="step" tabindex="0">
+						<div class="step-head"><div class="num">1</div><div class="step-title">Briefing</div></div>
+						<p class="step-desc">15-minütiges Gespräch – Was brauchst du? Welche Farben, Texte, Ziele?</p>
+					</div>
+					<div class="step" tabindex="0">
+						<div class="step-head"><div class="num">2</div><div class="step-title">Design</div></div>
+						<p class="step-desc">Ich erstelle einen ersten Entwurf und schicke dir eine Vorschau zur Freigabe.</p>
+					</div>
+					<div class="step" tabindex="0">
+						<div class="step-head"><div class="num">3</div><div class="step-title">Entwicklung</div></div>
+						<p class="step-desc">Die Website wird fertig gebaut. Du kannst jederzeit Feedback geben.</p>
+					</div>
+					<div class="step" tabindex="0">
+						<div class="step-head"><div class="num">4</div><div class="step-title">Live-Schaltung</div></div>
+						<p class="step-desc">Deine Website geht online. Du bekommst alle Zugangsdaten.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="about">
+			<div class="container about">
+				<h2>Über mich</h2>
+				<div class="about-grid">
+					<div class="avatar">A</div>
+					<div class="about-card">
+						<p>Ich bin Alexander, 17, und baue mit modernsten KI-Tools professionelle Websites für Unternehmen in ganz Österreich. Meine HAK-Ausbildung gibt mir ein echtes Verständnis für Geschäftsprozesse. Meine Kunden bekommen Agentur-Qualität zu fairen Preisen.</p>
+						<div class="about-badges">
+							<div class="stat-badge"><span>3</span> Projekte fertig</div>
+							<div class="stat-badge"><span>Ø 5</span> Tage Lieferzeit</div>
+							<div class="stat-badge"><span>Ganz</span> Österreich</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact">
+			<div class="container">
+				<h2>Kontakt</h2>
+				<form id="contactForm">
+					<div>
+						<label for="name">Name</label>
+						<input id="name" name="name" placeholder="Ihr Name" required>
+					</div>
+					<div>
+						<label for="company">Unternehmen</label>
+						<input id="company" name="company" placeholder="Firma / Geschäft">
+					</div>
+					<div class="full">
+						<label for="email">E‑Mail</label>
+						<input id="email" name="email" type="email" placeholder="name@beispiel.at" required>
+					</div>
+					<div class="full">
+						<label for="message">Nachricht</label>
+						<textarea id="message" name="message" placeholder="Beschreiben Sie kurz Ihr Projekt" required></textarea>
+					</div>
+					<div class="full">
+						<button type="submit" class="btn primary">Kostenloses Angebot anfragen</button>
+					</div>
+				</form>
+				<p class="muted">Oder schreiben Sie direkt an: <a href="mailto:alex.chlup@icloud.com">alex.chlup@icloud.com</a></p>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container">
+			© 2025 Alexander Chlup · Webentwicklung für Österreich · alex.chlup@icloud.com
+		</div>
+	</footer>
+
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			const form=document.getElementById('contactForm');
+			form.addEventListener('submit',function(e){
+				e.preventDefault();
+				const name=document.getElementById('name').value.trim();
+				const company=document.getElementById('company').value.trim();
+				const email=document.getElementById('email').value.trim();
+				const message=document.getElementById('message').value.trim();
+				if(!name||!email||!message){alert('Bitte alle Pflichtfelder ausfüllen.');return}
+				const to='alex.chlup@icloud.com';
+				const subject=encodeURIComponent('Website-Anfrage von '+name);
+				const body=encodeURIComponent('Name: '+name+'\nFirma: '+company+'\nE‑Mail: '+email+'\n\nNachricht:\n'+message);
+				window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+			});
+		});
+	</script>
+</body>
+</html>
+
