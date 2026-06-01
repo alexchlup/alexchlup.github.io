@@ -1,307 +1,877 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Alexander — Websites für Unternehmen in ganz Österreich</title>
-	<meta name="description" content="Alexander, 17 — moderne, schnelle Websites für Unternehmen in ganz Österreich. KI-gestützt, in 5 Tagen, ab €299.">
-	<style>
-		:root{
-			--bg:#0F0F0F;
-			--fg:#ffffff;
-			--accent:#00D084;
-			--muted:rgba(255,255,255,0.07);
-			--card-bg:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-			--mono: "Courier New", Courier, monospace;
-			--sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-		}
-		*{box-sizing:border-box}
-		html,body{height:100%}
-		html{scroll-behavior:smooth}
-		body{
-			margin:0;
-			font-family:var(--sans);
-			background:var(--bg);
-			color:var(--fg);
-			-webkit-font-smoothing:antialiased;
-			-moz-osx-font-smoothing:grayscale;
-			line-height:1.45;
-			padding-bottom:4rem;
-		}
-		a{color:inherit;text-decoration:none}
-		header{position:fixed;top:0;left:0;right:0;backdrop-filter:blur(14px);background:rgba(15,15,15,0.7);border-bottom:1px solid rgba(0,208,132,0.12);z-index:1000}
-		.container{max-width:1100px;margin:0 auto;padding:1.35rem 2rem}
-		.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-		.brand{display:flex;gap:.75rem;align-items:center;font-family:var(--mono);font-weight:700}
-		.brand .dot{width:10px;height:10px;background:var(--accent);border-radius:3px;display:inline-block}
-		nav{display:flex;align-items:center;gap:1rem}
-		nav a{margin-left:1rem;font-weight:600;color:rgba(255,255,255,0.85);transition:color .2s ease}
-		nav a:hover, nav a:focus{color:var(--accent)}
-		.nav-btn{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.2rem;border-radius:10px;background:var(--accent);color:#06110a;font-weight:700;border:0;cursor:pointer;transition:transform .2s ease,filter .2s ease}
-		.nav-btn:hover,.nav-btn:focus{transform:translateY(-1px);filter:brightness(1.03)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trattoria Roma – Authentische italienische Küche in Wien</title>
+  <style>
+    :root {
+      --terracotta: #C0654A;
+      --deep-red: #9B2D22;
+      --cream: #FAF7F2;
+      --charcoal: #2C2C2C;
+      --soft-black: #333;
+      --shadow: rgba(44, 44, 44, 0.12);
+      --radius: 18px;
+    }
 
-		/* Hero */
-		.hero{padding:6rem 0 3rem;opacity:1;transform:none}
-		.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:2rem;align-items:center}
-		.headline{font-size:clamp(2rem,4.5vw,3.4rem);margin:0 0 .5rem;font-weight:800}
-		.sub{color:var(--accent);font-family:var(--mono);font-weight:700;margin-bottom:1rem}
-		.lead{color:rgba(255,255,255,0.9);margin-bottom:1.5rem}
-		.ctas{display:flex;gap:.75rem}
-		.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--fg);cursor:pointer;font-weight:700}
-		.btn.primary{background:var(--accent);color:#06110a;border:0}
-		.btn.ghost{border-color:rgba(255,255,255,0.06)}
-		.badges{display:flex;gap:.5rem;margin-top:1.25rem;flex-wrap:wrap}
-		.badge{background:var(--muted);padding:.45rem .6rem;border-radius:999px;font-weight:700;font-size:.9rem}
+    * {
+      box-sizing: border-box;
+    }
 
-		/* Ensure hero content contrasts on dark background */
-		.hero > .container{position:relative;z-index:2}
-		.hero .headline,.hero .lead{color:var(--fg)}
-		.hero .sub{color:var(--accent)}
-		.hero .ctas .btn{z-index:3}
+    html {
+      scroll-behavior: smooth;
+    }
 
-		.hero-aside{background:var(--card-bg);padding:1.25rem;border-radius:12px;border:1px solid rgba(255,255,255,0.03);z-index:1}
-		.aside-row{display:flex;justify-content:space-between;gap:.5rem;margin-bottom:.75rem}
-		.aside-item{flex:1;padding:.6rem;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.05),transparent);text-align:center}
-		.aside-item strong{display:block;color:var(--accent);font-family:var(--mono)}
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
 
-		/* Sections */
-		section{padding:3rem 0}
-		h2{margin:0 0 1rem;font-size:1.3rem}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-		/* Services */
-		.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-		.card{background:var(--card-bg);padding:1.25rem;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transition:transform .22s ease,box-shadow .22s ease}
-		.card:hover{transform:translateY(-8px);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-		.price{font-family:var(--mono);font-size:1.6rem;color:var(--fg);margin-top:.5rem}
-		.highlight{border:2px solid var(--accent)}
-		.services-note{margin-top:.75rem;color:rgba(255,255,255,0.75);font-weight:600}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-		/* Portfolio */
-		.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-		.project{border-radius:12px;overflow:hidden;position:relative;min-height:160px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:1rem}
-		.project::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6))}
-		.project-title{position:relative;z-index:2;font-weight:800}
-		.project::before{content:"Klicken zum Ansehen";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--fg);background:rgba(0,208,132,0.92);font-family:var(--mono);font-weight:800;letter-spacing:.4px;opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s cubic-bezier(.2,.9,.25,1);z-index:3}
-		.project:hover::before,.project:focus::before,.project:focus-within::before{opacity:1;transform:none}
-		.project:focus{outline:2px solid rgba(0,208,132,0.18);outline-offset:4px}
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
 
-		/* How it works */
-		.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-		.step{background:var(--card-bg);width:100%;height:200px;padding:1.5rem 1rem;border-radius:10px;text-align:center;position:relative;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
-		.step:hover{transform:scale(1.03);background:rgba(255,255,255,0.1);box-shadow:0 18px 40px rgba(0,0,0,0.25)}
-		.step:focus{outline:2px solid rgba(0,208,132,0.32);outline-offset:4px}
-		.step-head{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin-bottom:.75rem}
-		.step .num{font-family:var(--mono);color:var(--accent);font-weight:800;padding:.3rem .7rem;font-size:.95rem;border-radius:8px;border:1px solid rgba(0,208,132,0.22);background:rgba(0,208,132,0.08)}
-		.step-title{font-weight:800;font-size:1rem;color:var(--fg);margin:0}
-		.step-desc{opacity:0;max-height:0;overflow:hidden;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,max-height .25s ease;margin:0;color:rgba(255,255,255,0.85);font-size:.95rem;line-height:1.5}
-		.step:hover .step-desc,.step:focus .step-desc{opacity:1;max-height:220px;transform:translateY(0)}
-		.step-desc{margin-top:.6rem}
+    .page-wrapper {
+      overflow-x: hidden;
+    }
 
-		/* About */
-		.about{display:grid;gap:1.5rem}
-		.about-grid{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center}
-		.avatar{width:96px;height:96px;border-radius:28px;background:rgba(0,208,132,0.12);border:1px solid rgba(0,208,132,0.25);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:2.25rem;font-weight:900;color:var(--accent);}
-		.about-card{border-left:4px solid var(--accent);padding:1.25rem 1rem 1.25rem 1.1rem;background:rgba(0,208,132,0.04);border-radius:14px}
-		.about-card p{margin:0 0 1.5rem;color:rgba(255,255,255,0.88);line-height:1.7}
-		.about-badges{display:flex;flex-wrap:wrap;gap:.75rem}
-		.stat-badge{padding:.7rem 1rem;border-radius:999px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.9);font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
-		.stat-badge span{color:var(--accent);font-family:var(--mono);font-weight:800}
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(250, 247, 242, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44, 44, 44, 0.08);
+    }
 
-		/* Contact */
-		form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-		form .full{grid-column:1/-1}
-		label{display:block;font-size:.9rem;color:rgba(255,255,255,0.8);margin-bottom:.35rem}
-		input,textarea{width:100%;padding:.65rem;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--fg)}
-		textarea{min-height:140px;resize:vertical}
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-		/* Footer */
-		footer{padding:2rem 0;color:rgba(255,255,255,0.6);text-align:center}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
 
-		/* Utilities */
-		.muted{color:rgba(255,255,255,0.65)}
+    .brand span {
+      color: var(--terracotta);
+    }
 
-		@media (max-width:980px){
-			.hero-grid{grid-template-columns:1fr}
-			.hero-aside{order:2}
-			.portfolio-grid,.cards{grid-template-columns:repeat(2,1fr)}
-			.steps{grid-template-columns:repeat(2,1fr)}
-			form{grid-template-columns:1fr}
-		}
-		@media (max-width:560px){
-			.brand{font-size:.95rem}
-			.portfolio-grid,.cards{grid-template-columns:1fr}
-			.headline{font-size:2rem}
-		}
-	</style>
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--charcoal);
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--terracotta);
+    }
+
+    .cta-btn,
+    .hero-btn,
+    .form-submit {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      background: var(--deep-red);
+      color: #fff;
+      padding: 0.95rem 1.7rem;
+      font-weight: 600;
+    }
+
+    .cta-btn:hover,
+    .hero-btn:hover,
+    .form-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(155, 45, 34, 0.28);
+      background: #89221b;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--charcoal);
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      place-items: center;
+      padding: 120px 24px 80px;
+      background:
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"%3E%3Cpath d="M0 0L12 12M12 0L0 12" stroke="%23ffffff" stroke-opacity="0.08" stroke-width="1"/%3E%3C/svg%3E') center/60px 60px repeat,
+        radial-gradient(circle at top, rgba(192, 101, 74, 0.24), transparent 28%),
+        linear-gradient(180deg, #7d2f25 0%, #b86b58 35%, #f4e7dd 100%);
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px rgba(44, 44, 44, 0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      margin: 0 0 24px;
+      letter-spacing: -0.04em;
+      color: var(--charcoal);
+    }
+
+    .hero p {
+      margin: 0 auto 32px;
+      max-width: 640px;
+      color: #4a4a4a;
+      font-size: 1.06rem;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin: 0 0 16px;
+      color: var(--charcoal);
+    }
+
+    .section p.lead {
+      max-width: 700px;
+      color: #575757;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .about-grid,
+    .menu-grid,
+    .review-grid,
+    .contact-columns {
+      display: grid;
+      gap: 32px;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+    }
+
+    .about-photo {
+      min-height: 420px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(192, 101, 74, 0.3), rgba(44, 44, 44, 0.18)),
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"%3E%3Crect width="600" height="400" fill="%23F5E8DF"/%3E%3Cpath d="M200 0 C 220 120 280 120 300 0 L 300 400 C 280 280 220 280 200 400 Z" fill="%23C0654A" opacity="0.15"/%3E%3Cpath d="M420 0 C 440 120 500 120 520 0 L 520 400 C 500 280 440 280 420 400 Z" fill="%232C2C2C" opacity="0.08"/%3E%3C/svg%3E') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(250, 247, 242, 0.0), rgba(44, 44, 44, 0.18));
+    }
+
+    .about-text h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+      color: #545454;
+    }
+
+    .about-text .tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 18px;
+      background: rgba(192, 101, 74, 0.08);
+      color: var(--terracotta);
+      font-weight: 600;
+      border-radius: 999px;
+    }
+
+    .menu-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .menu-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 18px 45px rgba(44, 44, 44, 0.08);
+      overflow: hidden;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-card .card-img {
+      min-height: 190px;
+      background: linear-gradient(135deg, rgba(192, 101, 74, 0.18), rgba(44, 44, 44, 0.12)),
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="300" viewBox="0 0 500 300"%3E%3Crect width="500" height="300" fill="%23F8F0E7"/%3E%3Ccircle cx="250" cy="150" r="90" fill="%23C0654A" opacity="0.12"/%3E%3Ccircle cx="320" cy="100" r="40" fill="%232C2C2C" opacity="0.08"/%3E%3Ccircle cx="180" cy="170" r="58" fill="%232C2C2C" opacity="0.1"/%3E%3C/svg%3E') center/cover no-repeat;
+    }
+
+    .menu-card .card-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .menu-card .dish-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.35rem;
+      margin: 0;
+      color: var(--charcoal);
+    }
+
+    .menu-card .dish-desc {
+      color: #575757;
+      flex: 1;
+    }
+
+    .menu-card .dish-price {
+      font-weight: 700;
+      color: var(--terracotta);
+      font-size: 1.1rem;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(44, 44, 44, 0.08);
+    }
+
+    .hours-table th,
+    .hours-table td {
+      padding: 18px 22px;
+      text-align: left;
+    }
+
+    .hours-table th {
+      background: rgba(192, 101, 74, 0.08);
+      color: var(--charcoal);
+      font-weight: 700;
+    }
+
+    .hours-table tr + tr td {
+      border-top: 1px solid rgba(44, 44, 44, 0.08);
+    }
+
+    .review-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .review-card {
+      padding: 28px;
+      background: #fff;
+      border-radius: 26px;
+      box-shadow: 0 18px 42px rgba(44, 44, 44, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 4px;
+      color: #d4905a;
+    }
+
+    .review-author {
+      margin: 0;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .review-text {
+      margin: 0;
+      color: #5c5c5c;
+    }
+
+    .contact-columns {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: start;
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 18px;
+      padding: 32px;
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: 0 20px 50px rgba(44, 44, 44, 0.08);
+    }
+
+    .contact-card h3,
+    .map-card h3 {
+      margin-top: 0;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 10px;
+      color: #575757;
+    }
+
+    .contact-info a {
+      color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    .reservation-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .form-grid.full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-control label {
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .form-control input,
+    .form-control textarea,
+    .form-control select {
+      border: 1px solid rgba(44, 44, 44, 0.16);
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: #fff;
+      resize: vertical;
+    }
+
+    .form-control input:focus,
+    .form-control textarea:focus,
+    .form-control select:focus {
+      outline: 2px solid rgba(192, 101, 74, 0.25);
+      outline-offset: 2px;
+    }
+
+    .map-card {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(44, 44, 44, 0.08);
+      min-height: 520px;
+      background: #f3ebe3;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: #6d5e55;
+      font-size: 1rem;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .map-placeholder span {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .footer {
+      padding: 48px 24px 24px;
+      background: var(--charcoal);
+      color: #f5f1ed;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #f5f1ed;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--terracotta);
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .about-grid,
+      .contact-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-grid,
+      .review-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        padding: 16px 18px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        right: 24px;
+        width: calc(100vw - 48px);
+        max-width: 300px;
+        flex-direction: column;
+        align-items: stretch;
+        background: #fff;
+        padding: 18px;
+        border-radius: 22px;
+        box-shadow: 0 20px 50px rgba(44, 44, 44, 0.12);
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(44, 44, 44, 0.08);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .hero {
+        padding-top: 100px;
+      }
+
+      .hero-content {
+        padding: 28px;
+      }
+
+      .section {
+        padding: 60px 18px;
+      }
+
+      .menu-grid,
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+  </style>
 </head>
 <body>
-	<header>
-		<div class="container nav">
-			<div class="brand"><span class="dot"></span>Alexander</div>
-			<nav>
-				<a href="#services">Services</a>
-				<a href="#portfolio">Projekte</a>
-				<a href="#about">Über mich</a>
-				<a href="#contact">Kontakt</a>
-			</nav>
-			<a href="#contact" class="nav-btn">Angebot anfragen</a>
-		</div>
-	</header>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="nav-inner">
+        <a href="#hero" class="brand"><span>Trattoria</span> Roma</a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">☰</button>
+        <nav id="nav-links" class="nav-links">
+          <a href="#about">Über uns</a>
+          <a href="#menu">Speisekarte</a>
+          <a href="#hours">Öffnungszeiten</a>
+          <a href="#reviews">Bewertungen</a>
+          <a href="#contact">Kontakt</a>
+          <a href="#contact" class="cta-btn">Reservieren</a>
+        </nav>
+      </div>
+    </header>
 
-	<main>
-		<section class="hero">
-			<div class="container" id="hero">
-				<div style="max-width:900px;margin:0 auto;text-align:left;padding:4rem 1rem;">
-					<h1 class="headline">Alexander — Websites für Unternehmen in ganz Österreich</h1>
-					<div class="sub">Professionell. In 5 Tagen. Ab €299.</div>
-					<p class="lead">Moderne, schnelle Websites für Unternehmen in ganz Österreich — Agentur-Qualität dank KI, zum Startup-Preis.</p>
-					<div class="ctas" style="margin-top:1.25rem;">
-						<a class="btn primary" href="#portfolio">Meine Projekte ansehen</a>
-						<a class="btn ghost" href="#contact">Kostenloses Angebot</a>
-					</div>
-					<div class="badges" aria-hidden="true" style="margin-top:1.25rem;">
-						<div class="badge">3 Projekte</div>
-						<div class="badge">5 Tage Lieferzeit</div>
-						<div class="badge">100% Kundenzufriedenheit</div>
-					</div>
-				</div>
-			</div>
-		</section>
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-content fade-in">
+          <h1>Echte Küche. Echte Leidenschaft.</h1>
+          <p>Genießen Sie authentische italienische Klassiker in der gemütlichen Atmosphäre unserer Trattoria im Herzen von Wien.</p>
+          <a href="#contact" class="hero-btn">Tisch reservieren</a>
+        </div>
+      </section>
 
-		<section id="services">
-			<div class="container">
-				<h2>Services & Preise</h2>
-				<div class="cards">
-					<div class="card">
-						<div class="muted">Starter</div>
-						<div class="price">€299</div>
-						<p class="muted">Kleines Unternehmen, einfache Seiten, responsive.</p>
-					</div>
-					<div class="card highlight">
-						<div class="muted">Standard</div>
-						<div class="price">€499</div>
-						<p class="muted">Optimal für die meisten Unternehmen — inkl. SEO-Basics.</p>
-					</div>
-					<div class="card">
-						<div class="muted">Premium</div>
-						<div class="price">€799</div>
-						<p class="muted">Erweiterte Funktionen, Mehrsprachigkeit & E-Commerce-ready.</p>
-					</div>
-				</div>
-				<div class="services-note">Wartung ab €49/Monat · Kostenloser Erstberatungscall</div>
-			</div>
-		</section>
+      <section id="about" class="section fade-in">
+        <h2>Seit 1987 in Wien.</h2>
+        <p class="lead">In der Trattoria Roma verbinden wir traditionelle Aromen mit einer herzlichen Wiener Gastfreundschaft. Willkommen bei einem Stück Italien direkt in der Hauptstadt.</p>
+        <div class="about-grid">
+          <div class="about-photo"></div>
+          <div class="about-text">
+            <h3>Unsere Geschichte</h3>
+            <p>Die Trattoria Roma ist ein familiäres Restaurant, in dem Rezepte von Generation zu Generation weitergegeben werden. Vom ersten Brot bis zur letzten Nachspeise entsteht jedes Gericht mit Liebe und Geduld.</p>
+            <p>Unsere Küche verwendet nur Zutaten aus der Region und italienische Spezialitäten, um den authentischen Geschmack sicherzustellen, den unsere Gäste seit Jahrzehnten schätzen.</p>
+            <span class="tag">Italienische Tradition in Wien</span>
+          </div>
+        </div>
+      </section>
 
-		<section id="portfolio">
-			<div class="container">
-				<h2>Portfolio</h2>
-				<div class="portfolio-grid">
-					<a class="project" href="../Restaurant/index.html" role="link" style="background-image:linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.1)),linear-gradient(90deg,#3b2b1f,#7c4a3f);">
-						<div class="project-title">Trattoria Roma</div>
-					</a>
-					<a class="project" href="../Friseur/index.html" role="link" style="background-image:linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.1)),linear-gradient(90deg,#5b2b4a,#9b6ca5);">
-						<div class="project-title">Studio Glamour</div>
-					</a>
-					<a class="project" href="../Elektriker/index.html" role="link" style="background-image:linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.1)),linear-gradient(90deg,#1b3b2b,#3fa57a);">
-						<div class="project-title">Müller Elektro</div>
-					</a>
-				</div>
-			</div>
-		</section>
+      <section id="menu" class="section fade-in">
+        <h2>Menu Highlights</h2>
+        <p class="lead">Entdecken Sie unsere Favoriten: klassische Pasta, zarte Fleischgerichte und hausgemachte Desserts für einen rundum genussvollen Abend.</p>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="card-img"></div>
+            <div class="card-content">
+              <h3 class="dish-name">Spaghetti Carbonara</h3>
+              <p class="dish-desc">Cremige Carbonara mit Pancetta, Pecorino und frischem schwarzem Pfeffer.</p>
+              <p class="dish-price">€14</p>
+            </div>
+          </article>
+          <article class="menu-card">
+            <div class="card-img"></div>
+            <div class="card-content">
+              <h3 class="dish-name">Ossobuco</h3>
+              <p class="dish-desc">Zart geschmorte Kalbshaxe in Tomaten-Wein-Sauce mit Gremolata.</p>
+              <p class="dish-price">€24</p>
+            </div>
+          </article>
+          <article class="menu-card">
+            <div class="card-img"></div>
+            <div class="card-content">
+              <h3 class="dish-name">Tiramisù</h3>
+              <p class="dish-desc">Hausgemachtes Tiramisù mit Espresso, Mascarpone und Kakaopulver.</p>
+              <p class="dish-price">€8</p>
+            </div>
+          </article>
+          <article class="menu-card">
+            <div class="card-img"></div>
+            <div class="card-content">
+              <h3 class="dish-name">Bruschetta</h3>
+              <p class="dish-desc">Knuspriges Brot mit Tomaten, Basilikum, Knoblauch und Olivenöl.</p>
+              <p class="dish-price">€9</p>
+            </div>
+          </article>
+          <article class="menu-card">
+            <div class="card-img"></div>
+            <div class="card-content">
+              <h3 class="dish-name">Risotto ai Funghi</h3>
+              <p class="dish-desc">Cremiges Pilzrisotto mit Parmesan und frischer Petersilie.</p>
+              <p class="dish-price">€18</p>
+            </div>
+          </article>
+          <article class="menu-card">
+            <div class="card-img"></div>
+            <div class="card-content">
+              <h3 class="dish-name">Bistecca Fiorentina</h3>
+              <p class="dish-desc">Saftiges Steak nach toskanischer Art mit Rosmarin und Meersalz.</p>
+              <p class="dish-price">€28</p>
+            </div>
+          </article>
+        </div>
+      </section>
 
-		<section id="how">
-			<div class="container">
-				<h2>Wie es funktioniert</h2>
-				<div class="steps">
-					<div class="step" tabindex="0">
-						<div class="step-head"><div class="num">1</div><div class="step-title">Briefing</div></div>
-						<p class="step-desc">15-minütiges Gespräch – Was brauchst du? Welche Farben, Texte, Ziele?</p>
-					</div>
-					<div class="step" tabindex="0">
-						<div class="step-head"><div class="num">2</div><div class="step-title">Design</div></div>
-						<p class="step-desc">Ich erstelle einen ersten Entwurf und schicke dir eine Vorschau zur Freigabe.</p>
-					</div>
-					<div class="step" tabindex="0">
-						<div class="step-head"><div class="num">3</div><div class="step-title">Entwicklung</div></div>
-						<p class="step-desc">Die Website wird fertig gebaut. Du kannst jederzeit Feedback geben.</p>
-					</div>
-					<div class="step" tabindex="0">
-						<div class="step-head"><div class="num">4</div><div class="step-title">Live-Schaltung</div></div>
-						<p class="step-desc">Deine Website geht online. Du bekommst alle Zugangsdaten.</p>
-					</div>
-				</div>
-			</div>
-		</section>
+      <section id="hours" class="section fade-in">
+        <h2>Öffnungszeiten</h2>
+        <p class="lead">Besuchen Sie uns für ein entspanntes Mittagessen oder ein gemütliches Abendessen in bester Lage.</p>
+        <table class="hours-table">
+          <thead>
+            <tr>
+              <th>Tag</th>
+              <th>Öffnungszeiten</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Montag</td>
+              <td>12:00 – 15:00, 18:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Dienstag</td>
+              <td>geschlossen</td>
+            </tr>
+            <tr>
+              <td>Mittwoch</td>
+              <td>12:00 – 15:00, 18:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Donnerstag</td>
+              <td>12:00 – 15:00, 18:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Freitag</td>
+              <td>12:00 – 15:00, 18:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Samstag</td>
+              <td>12:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Sonntag</td>
+              <td>12:00 – 23:00</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-		<section id="about">
-			<div class="container about">
-				<h2>Über mich</h2>
-				<div class="about-grid">
-					<div class="avatar">A</div>
-					<div class="about-card">
-						<p>Ich bin Alexander, 17, und baue mit modernsten KI-Tools professionelle Websites für Unternehmen in ganz Österreich. Meine HAK-Ausbildung gibt mir ein echtes Verständnis für Geschäftsprozesse. Meine Kunden bekommen Agentur-Qualität zu fairen Preisen.</p>
-						<div class="about-badges">
-							<div class="stat-badge"><span>3</span> Projekte fertig</div>
-							<div class="stat-badge"><span>Ø 5</span> Tage Lieferzeit</div>
-							<div class="stat-badge"><span>Ganz</span> Österreich</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+      <section id="reviews" class="section fade-in">
+        <h2>Bewertungen</h2>
+        <p class="lead">Unsere Gäste lieben die familiäre Atmosphäre, die frischen Aromen und den echten Geschmack Italiens.</p>
+        <div class="review-grid">
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3 class="review-author">Lukas M.</h3>
+            <p class="review-text">„Das beste Ossobuco, das ich je gegessen habe. Herzliches Personal und eine Atmosphäre wie im Urlaub – immer wieder eine Freude!“</p>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3 class="review-author">Anna S.</h3>
+            <p class="review-text">„Ein magischer Abend mit echten italienischen Aromen. Die Carbonara war perfekt und das Ambiente einfach wunderbar.“</p>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <h3 class="review-author">Michael T.</h3>
+            <p class="review-text">„Gemütlich, stilvoll und sehr authentisch. Der Service war warmherzig und das Tiramisù ein Traum.“</p>
+          </article>
+        </div>
+      </section>
 
-		<section id="contact">
-			<div class="container">
-				<h2>Kontakt</h2>
-				<form id="contactForm">
-					<div>
-						<label for="name">Name</label>
-						<input id="name" name="name" placeholder="Ihr Name" required>
-					</div>
-					<div>
-						<label for="company">Unternehmen</label>
-						<input id="company" name="company" placeholder="Firma / Geschäft">
-					</div>
-					<div class="full">
-						<label for="email">E‑Mail</label>
-						<input id="email" name="email" type="email" placeholder="name@beispiel.at" required>
-					</div>
-					<div class="full">
-						<label for="message">Nachricht</label>
-						<textarea id="message" name="message" placeholder="Beschreiben Sie kurz Ihr Projekt" required></textarea>
-					</div>
-					<div class="full">
-						<button type="submit" class="btn primary">Kostenloses Angebot anfragen</button>
-					</div>
-				</form>
-				<p class="muted">Oder schreiben Sie direkt an: <a href="mailto:alex.chlup@icloud.com">alex.chlup@icloud.com</a></p>
-			</div>
-		</section>
-	</main>
+      <section id="contact" class="section fade-in">
+        <h2>Kontakt & Reservierung</h2>
+        <p class="lead">Reservieren Sie online oder erreichen Sie uns direkt per Telefon. Wir freuen uns auf Ihren Besuch.</p>
+        <div class="contact-columns">
+          <div class="contact-card">
+            <h3>Adresse</h3>
+            <div class="contact-info">
+              <p>Mariahilfer Str. 42<br>1060 Wien</p>
+              <p><a href="tel:+43123456789">+43 1 234 56 789</a></p>
+              <p><a href="mailto:info@trattoriaroma.at">info@trattoriaroma.at</a></p>
+            </div>
+            <form id="reservation-form" class="reservation-form" novalidate>
+              <div class="form-grid">
+                <div class="form-control">
+                  <label for="res-name">Name</label>
+                  <input type="text" id="res-name" name="name" placeholder="Ihr Name" required>
+                </div>
+                <div class="form-control">
+                  <label for="res-date">Datum</label>
+                  <input type="date" id="res-date" name="date" required>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="form-control">
+                  <label for="res-time">Uhrzeit</label>
+                  <input type="time" id="res-time" name="time" required>
+                </div>
+                <div class="form-control">
+                  <label for="res-guests">Gäste</label>
+                  <select id="res-guests" name="guests" required>
+                    <option value="">Anzahl</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-control">
+                <label for="res-notes">Hinweis</label>
+                <textarea id="res-notes" name="notes" rows="4" placeholder="Besondere Wünsche, Allergien oder Anmerkungen"></textarea>
+              </div>
+              <button type="submit" class="form-submit">Tisch anfragen</button>
+              <p id="form-message" style="margin:0;color:#6e4c39;display:none;"></p>
+            </form>
+          </div>
+          <div class="map-card">
+            <div class="map-placeholder">
+              <span>Google Maps Platzhalter</span>
+              <p>Hier könnte eine eingebettete Karte Ihre Gäste direkt zu uns führen.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-	<footer>
-		<div class="container">
-			© 2025 Alexander Chlup · Webentwicklung für Österreich · alex.chlup@icloud.com
-		</div>
-	</footer>
+    <footer class="footer fade-in">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">Trattoria Roma</div>
+          <p>Italienische Lebensfreude in Wien – warme Gastfreundschaft seit 1987.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#about">Über uns</a>
+          <a href="#menu">Speisekarte</a>
+          <a href="#hours">Öffnungszeiten</a>
+          <a href="#contact">Kontakt</a>
+        </div>
+      </div>
+      <p style="margin-top:24px; color: rgba(245, 241, 237, 0.75);">© 2025 Trattoria Roma</p>
+    </footer>
+  </div>
 
-	<script>
-		document.addEventListener('DOMContentLoaded',function(){
-			const form=document.getElementById('contactForm');
-			form.addEventListener('submit',function(e){
-				e.preventDefault();
-				const name=document.getElementById('name').value.trim();
-				const company=document.getElementById('company').value.trim();
-				const email=document.getElementById('email').value.trim();
-				const message=document.getElementById('message').value.trim();
-				if(!name||!email||!message){alert('Bitte alle Pflichtfelder ausfüllen.');return}
-				const to='alex.chlup@icloud.com';
-				const subject=encodeURIComponent('Website-Anfrage von '+name);
-				const body=encodeURIComponent('Name: '+name+'\nFirma: '+company+'\nE‑Mail: '+email+'\n\nNachricht:\n'+message);
-				window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-			});
-		});
-	</script>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    const form = document.getElementById('reservation-form');
+    const message = document.getElementById('form-message');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = form.querySelector('#res-name');
+      const date = form.querySelector('#res-date');
+      const time = form.querySelector('#res-time');
+      const guests = form.querySelector('#res-guests');
+
+      if (!name.value.trim() || !date.value || !time.value || !guests.value) {
+        message.textContent = 'Bitte füllen Sie alle Pflichtfelder aus, damit wir Ihre Reservierung bearbeiten können.';
+        message.style.display = 'block';
+        message.style.color = '#C0654A';
+        return;
+      }
+
+      message.textContent = 'Vielen Dank! Ihre Reservierungsanfrage wurde gesendet. Wir melden uns in Kürze.';
+      message.style.display = 'block';
+      message.style.color = '#2C2C2C';
+      form.reset();
+    });
+  </script>
 </body>
 </html>
-
