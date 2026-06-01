@@ -132,6 +132,18 @@
 			.portfolio-grid,.cards{grid-template-columns:1fr}
 			.headline{font-size:2rem}
 		}
+
+		/* Mobile navigation */
+		.hamburger{display:none;background:transparent;border:0;color:var(--fg);font-size:1.25rem;padding:.6rem;margin-left:8px;cursor:pointer}
+		.mobile-menu{display:none;position:absolute;right:1rem;top:64px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.04);border-radius:10px;padding:.5rem;min-width:180px;box-shadow:0 8px 30px rgba(0,0,0,0.45);z-index:1200}
+		.mobile-menu a{display:block;padding:.6rem .9rem;border-radius:8px;color:var(--fg);font-weight:700}
+		.mobile-menu a:hover{background:rgba(255,255,255,0.02);color:var(--accent)}
+		.mobile-menu.open{display:block}
+
+		@media (max-width:980px){
+			nav{display:none}
+			.hamburger{display:inline-flex;align-items:center}
+		}
 	</style>
 </head>
 <body>
@@ -144,7 +156,14 @@
 				<a href="#about">Über mich</a>
 				<a href="#contact">Kontakt</a>
 			</nav>
+			<button class="hamburger" aria-label="Menü öffnen" aria-expanded="false">☰</button>
 			<a href="#contact" class="nav-btn">Angebot anfragen</a>
+			<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+				<a href="#services">Services</a>
+				<a href="#portfolio">Projekte</a>
+				<a href="#about">Über mich</a>
+				<a href="#contact">Kontakt</a>
+			</div>
 		</div>
 	</header>
 
@@ -287,6 +306,7 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded',function(){
+			// Contact form
 			const form=document.getElementById('contactForm');
 			form.addEventListener('submit',function(e){
 				e.preventDefault();
@@ -300,6 +320,46 @@
 				const body=encodeURIComponent('Name: '+name+'\nFirma: '+company+'\nE‑Mail: '+email+'\n\nNachricht:\n'+message);
 				window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
 			});
+
+			// Mobile menu toggle
+			const hamburger = document.querySelector('.hamburger');
+			const mobileMenu = document.getElementById('mobileMenu');
+			if(hamburger && mobileMenu){
+				hamburger.addEventListener('click', function(e){
+					e.stopPropagation();
+					const open = mobileMenu.classList.toggle('open');
+					hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+					mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+				});
+
+				// Close when clicking a link
+				mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+					mobileMenu.classList.remove('open');
+					hamburger.setAttribute('aria-expanded','false');
+					mobileMenu.setAttribute('aria-hidden','true');
+				}));
+
+				// Close on outside click
+				document.addEventListener('click', function(){
+					if(mobileMenu.classList.contains('open')){
+						mobileMenu.classList.remove('open');
+						hamburger.setAttribute('aria-expanded','false');
+						mobileMenu.setAttribute('aria-hidden','true');
+					}
+				});
+
+				// Prevent clicks inside menu from closing
+				mobileMenu.addEventListener('click', function(e){e.stopPropagation();});
+
+				// Ensure menu state resets on resize
+				window.addEventListener('resize', function(){
+					if(window.innerWidth>980){
+						mobileMenu.classList.remove('open');
+						hamburger.setAttribute('aria-expanded','false');
+						mobileMenu.setAttribute('aria-hidden','true');
+					}
+				});
+			}
 		});
 	</script>
 </body>
