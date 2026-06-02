@@ -289,7 +289,7 @@
 		<section id="contact">
 			<div class="container">
 				<h2>Kontakt</h2>
-				<form id="contactForm">
+				<form id="contactForm" action="https://formspree.io/f/xeedydkq" method="POST">
 					<div>
 						<label for="name">Name</label>
 						<input id="name" name="name" placeholder="Ihr Name" required>
@@ -328,14 +328,17 @@
 			form.addEventListener('submit',function(e){
 				e.preventDefault();
 				const name=document.getElementById('name').value.trim();
-				const company=document.getElementById('company').value.trim();
 				const email=document.getElementById('email').value.trim();
 				const message=document.getElementById('message').value.trim();
 				if(!name||!email||!message){alert('Bitte alle Pflichtfelder ausfüllen.');return}
-				const to='alex.chlup@icloud.com';
-				const subject=encodeURIComponent('Website-Anfrage von '+name);
-				const body=encodeURIComponent('Name: '+name+'\nFirma: '+company+'\nE‑Mail: '+email+'\n\nNachricht:\n'+message);
-				window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+				
+				const formData=new FormData(form);
+				fetch(form.action,{method:form.method,body:formData,headers:{'Accept':'application/json'}})
+					.then(r=>{if(r.ok){
+						alert('Danke! Ich melde mich innerhalb von 24 Stunden.');
+						form.reset();
+					}else{alert('Es gab ein Problem. Bitte versuchen Sie es später erneut.');}})
+					.catch(()=>alert('Es gab ein Problem. Bitte versuchen Sie es später erneut.'));
 			});
 
 			// Mobile menu toggle
